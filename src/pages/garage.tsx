@@ -9,7 +9,7 @@ export function Garage() {
           <Button>RESET</Button>
         </Flex>
       </Flex>
-      <Flex></Flex>
+      <Flex />
     </Flex>
   );
 }

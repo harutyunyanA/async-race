@@ -2,6 +2,7 @@ import { Button, Flex, Layout } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { Outlet, useNavigate } from "react-router-dom";
 import "../App.css";
+
 export function MainLayout() {
   const navigate = useNavigate();
   return (
@@ -18,7 +19,7 @@ export function MainLayout() {
             variant="outlined"
             // type="default"
             // color="default"
-            onClick={() => navigate("/")}
+            onClick={async () => navigate("/")}
             // className="nav-btn"
           >
             GARAGE
@@ -28,7 +29,7 @@ export function MainLayout() {
             // type="default"
             variant="outlined"
             // color="default"
-            onClick={() => navigate("/winners")}
+            onClick={async () => navigate("/winners")}
             // className="nav-btn"
           >
             WINNERS
