@@ -1,6 +1,12 @@
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./routes/router";
+import { router } from "./routes/router.tsx";
 import "./index.css";
 
-createRoot(document.getElementById("root")).render(<RouterProvider router={router} />);
+const element = document.getElementById("root");
+
+if (!element) {
+  throw new Error("Root element not found");
+}
+
+createRoot(element).render(<RouterProvider router={router} />);

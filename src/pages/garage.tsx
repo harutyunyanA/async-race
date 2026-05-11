@@ -1,15 +1,20 @@
-import { Button, Flex } from "antd";
+import { Flex } from "antd";
+import RaceContent from "../components/carsList.tsx";
+import RaceControls from "../components/RaceControls.tsx";
+import CreateCarForm from "../components/CreateCarForm.tsx";
+import UpdateCarForm from "../components/UpdateCarForm.tsx";
+import GenerateCars from "../components/GenerateCars.tsx";
 
-export function Garage() {
+export default function Garage() {
   return (
-    <Flex>
-      <Flex justify="space-between">
-        <Flex gap="small">
-          <Button>RACE</Button>
-          <Button>RESET</Button>
-        </Flex>
+    <Flex vertical gap={24}>
+      <Flex justify="space-between" align="center" style={{ width: "100%" }} id="garage-controls">
+        <RaceControls />
+        <CreateCarForm />
+        <UpdateCarForm />
+        <GenerateCars />
       </Flex>
-      <Flex />
+      <RaceContent />
     </Flex>
   );
 }

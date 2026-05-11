@@ -1,4 +1,4 @@
-export function Winners() {
+export default function Winners() {
   return (
     <div>
       <h1>Winners</h1>

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Garage } from "../pages/garage";
-import { Winners } from "../pages/winners";
-import { MainLayout } from "../layout/layout";
+import Garage from "../pages/garage.tsx";
+import Winners from "../pages/winners.tsx";
+import MainLayout from "../layout/layout.tsx";
 
 export const router = createBrowserRouter([
   {

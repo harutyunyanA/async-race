@@ -1,37 +1,55 @@
 .main-layout {
   min-height: 100vh;
-  background: #0f0f0f;
+  background-image: url("/back.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .main-header {
   height: 20vh;
   display: flex;
   align-items: center;
-  /* padding: 0 24px; */
-  background: #1a1a1a !important;
-  border-bottom: 2px solid #333;
+  background: transparent !important;
   line-height: normal !important;
 }
 
-.nav-buttons {
+/* .nav-buttons {
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
+} */
 
-.nav-btn {
+/* .nav-btn {
   font-weight: 700 !important;
   letter-spacing: 1px;
-  /* transition: all 0.3s ease; */
 }
 
 .nav-btn:hover {
-  /* transform: translateX(5px); */
   box-shadow: 0 0 15px rgba(24, 144, 255, 0.5);
-}
+} */
 
 .main-content {
   padding: 40px;
   color: #fff;
   min-height: 80vh;
+}
+
+.neon-btn {
+  color: var(--neon-color) !important;
+  border-color: var(--neon-color) !important;
+  box-shadow: 0 0 5px var(--neon-color) !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.neon-btn:hover {
+  box-shadow: 0 0 15px var(--neon-color) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: var(--neon-color) !important;
 }

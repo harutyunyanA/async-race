@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 async-race-api
+.env
