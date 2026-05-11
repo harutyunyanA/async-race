@@ -15,21 +15,6 @@
   line-height: normal !important;
 }
 
-/* .nav-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-} */
-
-/* .nav-btn {
-  font-weight: 700 !important;
-  letter-spacing: 1px;
-}
-
-.nav-btn:hover {
-  box-shadow: 0 0 15px rgba(24, 144, 255, 0.5);
-} */
-
 .main-content {
   padding: 40px;
   color: #fff;
@@ -52,4 +37,32 @@
   box-shadow: 0 0 15px var(--neon-color) !important;
   background: rgba(255, 255, 255, 0.05) !important;
   border-color: var(--neon-color) !important;
+}
+
+.neon-title {
+  color: var(--neon-color) !important;
+  text-shadow:
+    0 0 5px var(--neon-color),
+    0 0 30px var(--neon-color);
+  letter-spacing: 2px;
+}
+
+.transparent-table .ant-table,
+.transparent-table .ant-table-container,
+.transparent-table .ant-table-content,
+.transparent-table .ant-table-thead > tr > th,
+.transparent-table .ant-table-tbody > tr > td {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: white !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7) !important;
+}
+
+.transparent-table .ant-table-thead > tr > th {
+  color: var(--neon-color) !important;
+  border-bottom: 2px solid var(--neon-color) !important;
+}
+
+.transparent-table .ant-table-placeholder .ant-empty-description {
+  color: rgba(255, 255, 255, 0.5) !important;
 }

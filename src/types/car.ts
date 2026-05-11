@@ -18,4 +18,5 @@ export interface GarageStore {
   createCar: (car: CreateCar) => Promise<Car>;
   addCars: (cars: Car[]) => void;
   updateCarAction: () => Promise<Car>;
+  getCars: () => Promise<void>;
 }

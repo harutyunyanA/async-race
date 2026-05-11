@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { GarageStore } from "../types/car";
-import { createCarApi, updateCarApi } from "../api/garage";
+import { createCarApi, updateCarApi, getCarsApi } from "../api/garage";
 
 export const useGarageStore = create<GarageStore>((set, get) => ({
   cars: [],
@@ -33,5 +33,10 @@ export const useGarageStore = create<GarageStore>((set, get) => ({
       cars: s.cars.map((c) => (c.id === data.id ? data : c)),
     }));
     return data;
+  },
+
+  getCars: async () => {
+    const data = await getCarsApi();
+    set({ cars: data });
   },
 }));

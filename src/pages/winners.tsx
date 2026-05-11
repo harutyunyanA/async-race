@@ -1,7 +1,18 @@
+import { Flex, Table } from "antd";
+import { Typography } from "antd";
+import WinnersTable from "../components/winnersTable";
+
 export default function Winners() {
   return (
-    <div>
-      <h1>Winners</h1>
-    </div>
+    <Flex vertical gap={"large"}>
+      <Typography.Title
+        level={1}
+        className="neon-title"
+        style={{ "--neon-color": "#ff00ff" } as React.CSSProperties}
+      >
+        WINNERS
+      </Typography.Title>
+      <WinnersTable />
+    </Flex>
   );
 }
