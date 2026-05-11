@@ -11,17 +11,15 @@ export default function RaceContent() {
       try {
         const data = await getCarsApi();
         addCars(data);
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
     })();
   }, [addCars]);
 
   return (
     <Flex style={{ width: "100%" }}>
-      <Flex vertical style={{ width: "100%" }} gap="small">
-        {/* <hr style={{ width: "100%" }} />
-        <img src="hello.png" alt="" />
-        <hr style={{ width: "100%" }} /> */}
-      </Flex>
+      <Flex vertical style={{ width: "100%" }} gap="small" />
       <Flex />
     </Flex>
   );
