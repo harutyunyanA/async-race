@@ -1,5 +1,5 @@
 import { Flex, Typography } from "antd";
-import WinnersTable from "../components/winnersTable";
+import WinnersTable from "../components/winnersTable.tsx";
 
 export default function Winners() {
   return (

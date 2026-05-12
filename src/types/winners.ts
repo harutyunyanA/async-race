@@ -9,7 +9,7 @@ export interface WinnerTableData extends Winner {
   color: string;
 }
 
-export type SortBy = "id" | "wins" | "time";
+export type SortBy = "wins" | "time";
 export type Order = "ASC" | "DESC";
 
 export interface WinnersState {

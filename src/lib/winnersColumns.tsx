@@ -1,13 +1,21 @@
 import type { TableColumnsType } from "antd";
 import type { WinnerTableData, SortBy, Order } from "../types/winners";
-import Car from "../components/car";
+import Car from "../components/car.tsx";
+
+const getSortOrder = (columnKey: SortBy, sortBy: SortBy, order: Order) => {
+  if (columnKey !== sortBy) return undefined;
+
+  if (order === "ASC") return "ascend";
+  if (order === "DESC") return "descend";
+  return undefined;
+};
 
 export const getWinnersColumns = (
   sortBy: SortBy,
   order: Order,
 ): TableColumnsType<WinnerTableData> => [
   {
-    title: "ID",
+    title: "№",
     dataIndex: "id",
     key: "id",
     width: "10%",
@@ -31,16 +39,16 @@ export const getWinnersColumns = (
     key: "wins",
     sorter: true,
     sortDirections: ["ascend", "descend"],
-    sortOrder: sortBy === "wins" ? (order === "ASC" ? "ascend" : "descend") : undefined,
+    sortOrder: getSortOrder("wins", sortBy, order),
     width: "15%",
   },
   {
-    title: "BEST TIME (s)",
+    title: "BEST TIME (sec)",
     dataIndex: "time",
     key: "time",
     sorter: true,
     sortDirections: ["ascend", "descend"],
-    sortOrder: sortBy === "time" ? (order === "ASC" ? "ascend" : "descend") : undefined,
+    sortOrder: getSortOrder("time", sortBy, order),
     width: "15%",
   },
 ];

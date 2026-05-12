@@ -1,4 +1,4 @@
-import { carNames } from "../lib/cars.ts";
+import { carNames } from "../lib/cars";
 
 export function carGenerator() {
   const brands = Object.keys(carNames);

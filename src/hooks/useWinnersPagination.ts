@@ -14,18 +14,14 @@ export const useWinnersPagination = () => {
       setPage(pagination.current);
     }
 
-    if (!Array.isArray(sorter)) {
-      const newSortBy = sorter.columnKey as SortBy;
-      const newOrder: Order | undefined = 
-        sorter.order === "ascend" ? "ASC" : 
-        sorter.order === "descend" ? "DESC" : 
-        undefined;
+    if (Array.isArray(sorter)) return;
 
-      if (newSortBy && newOrder) {
-        if (newSortBy !== sortBy || newOrder !== order) {
-          setSorting(newSortBy, newOrder);
-        }
-      }
+    const newSortBy = sorter.columnKey as SortBy;
+
+    const newOrder: Order = sorter.order === "ascend" ? "ASC" : "DESC";
+
+    if (newSortBy !== sortBy || newOrder !== order) {
+      setSorting(newSortBy, newOrder);
     }
   };
 
