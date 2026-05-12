@@ -24,6 +24,7 @@ export interface WinnersState {
   setPage: (page: number) => void;
   setSortBy: (sortBy: SortBy) => void;
   setOrder: (order: Order) => void;
+  setSorting: (sortBy: SortBy, order: Order) => void;
 
   createWinner: (winner: Winner) => Promise<Winner>;
   getWinners: () => Promise<void>;

@@ -1,6 +1,6 @@
 import { Flex } from "antd";
-import { useGarageStore } from "../store/useGarageStore";
 import { useEffect } from "react";
+import { useGarageStore } from "../store/useGarageStore";
 import { getCarsApi } from "../api/garage";
 
 export default function RaceContent() {

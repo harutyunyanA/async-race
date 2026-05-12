@@ -1,10 +1,9 @@
-import { Flex, Table } from "antd";
-import { Typography } from "antd";
+import { Flex, Typography } from "antd";
 import WinnersTable from "../components/winnersTable";
 
 export default function Winners() {
   return (
-    <Flex vertical gap={"large"}>
+    <Flex vertical gap="large">
       <Typography.Title
         level={1}
         className="neon-title"

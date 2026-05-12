@@ -22,7 +22,7 @@ export const getWinnersApi = async (
   page: number,
   sortBy: SortBy,
   order: Order,
-): Promise<Winner[]> => {
+): Promise<{ items: Winner[]; totalCount: number }> => {
   const query = `_page=${page}&_limit=10&_sort=${sortBy}&_order=${order}`;
   const res = await fetch(`${BASE_URL}/winners?${query}`);
 
@@ -30,7 +30,10 @@ export const getWinnersApi = async (
     throw new Error("Unable to get winners");
   }
 
-  return res.json() as Promise<Winner[]>;
+  const items = (await res.json()) as Winner[];
+  const totalCount = Number(res.headers.get("X-Total-Count")) || 0;
+
+  return { items, totalCount };
 };
 
 export const getWinnerByIdApi = async (id: number): Promise<Winner> => {

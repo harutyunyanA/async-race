@@ -1,19 +1,32 @@
 import { create } from "zustand";
 import type { Winner, WinnersState } from "../types/winners";
-import { createWinnerApi, deleteWinnerApi, getWinnersApi, } from "../api/winners.ts";
+import { createWinnerApi, deleteWinnerApi, getWinnersApi } from "../api/winners.ts";
 
-export const useWinnerStore = create<WinnersState>( (set, get) => ({
+export const useWinnerStore = create<WinnersState>((set, get) => ({
   winners: [],
   totalCount: 0,
   page: 1,
-  sortBy: 'time',
-  order: 'DESC',
+  sortBy: "time",
+  order: "DESC",
 
   setWinners: (winners) => set({ winners }),
   setTotalCount: (count) => set({ totalCount: count }),
-  setPage: (page) => set({ page }),
-  setSortBy: (sortBy) => set({ sortBy }),
-  setOrder: (order) => set({ order }),
+  setPage: (page) => {
+    set({ page });
+    get().getWinners();
+  },
+  setSortBy: (sortBy) => {
+    set({ sortBy });
+    get().getWinners();
+  },
+  setOrder: (order) => {
+    set({ order });
+    get().getWinners();
+  },
+  setSorting: (sortBy, order) => {
+    set({ sortBy, order });
+    get().getWinners();
+  },
 
   createWinner: async (winner: Winner) => {
     const data = await createWinnerApi(winner);
@@ -23,8 +36,8 @@ export const useWinnerStore = create<WinnersState>( (set, get) => ({
 
   getWinners: async () => {
     const { page, sortBy, order } = get();
-    const data = await getWinnersApi(page, sortBy, order);
-    set({ winners: data });
+    const { items, totalCount } = await getWinnersApi(page, sortBy, order);
+    set({ winners: items, totalCount });
   },
 
   deleteWinner: async (id: number) => {
