@@ -8,7 +8,13 @@ import GenerateCars from "../components/GenerateCars.tsx";
 export default function Garage() {
   return (
     <Flex vertical gap={24}>
-      <Flex justify="space-between" align="center" style={{ width: "100%" }} id="garage-controls">
+      <Flex
+        justify="space-between"
+        align="center"
+        style={{ width: "100%" }}
+        id="garage-controls"
+        wrap
+      >
         <RaceControls />
         <CreateCarForm />
         <UpdateCarForm />

@@ -9,7 +9,7 @@ export default function GenerateCars() {
 
   const handleGenerate = async () => {
     const carsToCreate = Array.from({ length: 100 }, () => carGenerator());
-    const results = await Promise.all(carsToCreate.map((car) => createCarApi(car)));
+    const results = await Promise.all(carsToCreate.map(async (car) => createCarApi(car)));
     addCars(results);
   };
 

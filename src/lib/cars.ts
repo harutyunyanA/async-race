@@ -257,16 +257,5 @@ export const carNames: Record<string, string[]> = {
 
   Subaru: ["Impreza", "WRX", "WRX STI", "BRZ", "Legacy", "Forester", "Outback", "Levorg", "Baja"],
 
-  Mazda: [
-    "2",
-    "3",
-    "6",
-    "MX-5 Miata",
-    "RX-7",
-    "RX-8",
-    "CX-3",
-    "CX-5",
-    "CX-9",
-    "Cosmo",
-  ],
+  Mazda: ["2", "3", "6", "MX-5 Miata", "RX-7", "RX-8", "CX-3", "CX-5", "CX-9", "Cosmo"],
 };

@@ -2,12 +2,14 @@ import { Table } from "antd";
 import React, { useEffect, useMemo } from "react";
 import { useWinnerStore } from "../store/useWinnersStore";
 import { useGarageStore } from "../store/useGarageStore";
-import { columns } from "../lib/winnersTable";
+import { useWinnersPagination } from "../hooks/useWinnersPagination";
+import { getWinnersColumns } from "../lib/winnersColumns";
 import type { WinnerTableData } from "../types/winners";
 
 export default function WinnersTable() {
-  const { winners, getWinners } = useWinnerStore();
+  const { winners, totalCount, getWinners } = useWinnerStore();
   const { cars, getCars } = useGarageStore();
+  const { handleTableChange, page, sortBy, order } = useWinnersPagination();
 
   useEffect(() => {
     getWinners();
@@ -16,7 +18,7 @@ export default function WinnersTable() {
 
   const winnersData = useMemo(() => {
     if (!winners.length || !cars.length) return [];
-    
+
     return winners.map((w) => {
       const car = cars.find((c) => c.id === w.id);
       return {
@@ -32,12 +34,16 @@ export default function WinnersTable() {
       rootClassName="transparent-table"
       style={{ "--neon-color": "#ff00ff" } as React.CSSProperties}
       rowClassName={() => "winner-row"}
-      columns={columns}
+      columns={getWinnersColumns(sortBy, order)}
       dataSource={winnersData}
+      onChange={handleTableChange}
       pagination={{
-        defaultPageSize: 10,
+        simple: true,
+        current: page,
+        total: totalCount,
         className: "neon-pagination",
         showSizeChanger: false,
+        placement: ["bottomStart"],
       }}
       rowKey="id"
     />

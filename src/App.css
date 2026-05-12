@@ -66,3 +66,29 @@
 .transparent-table .ant-table-placeholder .ant-empty-description {
   color: rgba(255, 255, 255, 0.5) !important;
 }
+
+.neon-pagination.ant-pagination-simple .ant-pagination-simple-pager {
+  color: white !important;
+}
+
+.neon-pagination.ant-pagination-simple .ant-pagination-simple-pager input {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  transition: all 0.3s ease;
+}
+
+.neon-pagination.ant-pagination-simple .ant-pagination-simple-pager input:hover {
+  border-color: var(--neon-color) !important;
+}
+
+.neon-pagination.ant-pagination-simple .ant-pagination-prev .ant-pagination-item-link,
+.neon-pagination.ant-pagination-simple .ant-pagination-next .ant-pagination-item-link {
+  color: white !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.neon-pagination.ant-pagination-simple .ant-pagination-disabled .ant-pagination-item-link {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
