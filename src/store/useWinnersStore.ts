@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { Winner, WinnersState } from "../types/winners";
-import { createWinnerApi, deleteWinnerApi, getWinnersApi } from "../api/winners.ts";
+import { createWinnerApi, deleteWinnerApi, getWinnersApi } from "../api/winners";
 
 export const useWinnerStore = create<WinnersState>((set, get) => ({
   winners: [],
