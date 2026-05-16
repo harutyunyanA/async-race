@@ -72,7 +72,7 @@ export default defineConfig([
         "ignorePackages",
         {
           ts: "never",
-          tsx: "never",
+          // tsx: "never",
         },
       ],
     },

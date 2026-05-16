@@ -2,35 +2,30 @@ import { Button, Flex, Layout } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { Outlet, useNavigate } from "react-router-dom";
 import "../App.css";
+import { useRaceStore } from "../store/useRaceStore";
 
-export function MainLayout() {
+export default function MainLayout() {
   const navigate = useNavigate();
+  const isRacing = useRaceStore((s) => s.isRacing);
   return (
     <Layout className="main-layout">
       <Header className="main-header">
-        <Flex
-          gap="small"
-          //   className="nav-buttons"
-          justify="center"
-          align="center"
-        >
+        <Flex gap="large" justify="center" align="center" vertical>
           <Button
+            className="neon-btn"
+            style={{ "--neon-color": "#00ffff" } as React.CSSProperties}
             size="large"
-            variant="outlined"
-            // type="default"
-            // color="default"
+            disabled={isRacing}
             onClick={async () => navigate("/")}
-            // className="nav-btn"
           >
             GARAGE
           </Button>
           <Button
+            className="neon-btn"
+            style={{ "--neon-color": "#ff00ff" } as React.CSSProperties}
             size="large"
-            // type="default"
-            variant="outlined"
-            // color="default"
+            disabled={isRacing}
             onClick={async () => navigate("/winners")}
-            // className="nav-btn"
           >
             WINNERS
           </Button>
