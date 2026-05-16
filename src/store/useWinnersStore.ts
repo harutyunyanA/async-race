@@ -1,6 +1,12 @@
 import { create } from "zustand";
 import type { Winner, WinnersState } from "../types/winners";
-import { createWinnerApi, deleteWinnerApi, getWinnersApi } from "../api/winners";
+import {
+  createWinnerApi,
+  deleteWinnerApi,
+  getWinnerByIdApi,
+  getWinnersApi,
+  updateWinnerApi,
+} from "../api/winners";
 
 export const useWinnerStore = create<WinnersState>((set, get) => ({
   winners: [],
@@ -43,5 +49,18 @@ export const useWinnerStore = create<WinnersState>((set, get) => ({
   deleteWinner: async (id: number) => {
     await deleteWinnerApi(id);
     set((s) => ({ winners: s.winners.filter((w) => w.id !== id) }));
+  },
+
+  saveRaceWinner: async (id: number, time: number) => {
+    try {
+      const existing = await getWinnerByIdApi(id);
+      await updateWinnerApi({
+        id,
+        wins: existing.wins + 1,
+        time: Math.min(existing.time, time),
+      });
+    } catch {
+      await createWinnerApi({ id, wins: 1, time });
+    }
   },
 }));

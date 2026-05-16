@@ -52,7 +52,7 @@ export const updateWinnerApi = async (winner: Winner): Promise<Winner> => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(winner.time),
+    body: JSON.stringify(winner),
   });
 
   if (res.status !== 200) {

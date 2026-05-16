@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import type { GarageStore } from "../types/car";
 import { createCarApi, updateCarApi, getCarsApi, deleteCarApi } from "../api/garage";
+import { deleteWinnerApi } from "../api/winners";
+import { PAGE_SIZE } from "../lib/constants";
 
 export const useGarageStore = create<GarageStore>((set, get) => ({
   cars: [],
@@ -33,7 +35,7 @@ export const useGarageStore = create<GarageStore>((set, get) => ({
     set((s) => ({
       updateCar: { id: -1, name: "", color: "#ffffff" },
       cars: s.cars.map((c) => (c.id === data.id ? data : c)),
-      selectedCar: null,  
+      selectedCar: null,
     }));
     return data;
   },
@@ -45,11 +47,12 @@ export const useGarageStore = create<GarageStore>((set, get) => ({
 
   deleteCar: async (id) => {
     await deleteCarApi(id);
+    await deleteWinnerApi(id).catch(() => undefined);
     const { page, setPage } = get();
     set((s) => {
       const cars = s.cars.filter((c) => c.id !== id);
-      const pageStart = (page - 1) * 7;
-      const isPageEmpty = cars.slice(pageStart, pageStart + 7).length === 0;
+      const pageStart = (page - 1) * PAGE_SIZE;
+      const isPageEmpty = cars.slice(pageStart, pageStart + PAGE_SIZE).length === 0;
       if (isPageEmpty && page > 1) setPage(page - 1);
       return { cars };
     });
