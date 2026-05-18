@@ -8,7 +8,7 @@
 }
 
 .main-header {
-  height: 20vh;
+  height: 15vh;
   display: flex;
   align-items: center;
   background: transparent !important;
@@ -18,7 +18,7 @@
 .main-content {
   padding: 40px;
   color: #fff;
-  min-height: 80vh;
+  min-height: 85vh;
 }
 
 .neon-btn {
@@ -45,6 +45,13 @@
     0 0 5px var(--neon-color),
     0 0 30px var(--neon-color);
   letter-spacing: 2px;
+}
+
+.empty-garage {
+  text-align: center;
+  padding: 80px 24px !important;
+  font-size: 1.5rem !important;
+  opacity: 0.85;
 }
 
 .transparent-table .ant-table,
@@ -91,4 +98,59 @@
 
 .neon-pagination.ant-pagination-simple .ant-pagination-disabled .ant-pagination-item-link {
   color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.race-content {
+  min-height: 40%;
+}
+
+.winner-modal .ant-modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+}
+
+.winner-modal .ant-modal-close {
+  color: #fff;
+}
+
+.car-lane {
+  width: 100%;
+}
+
+.car-track {
+  position: relative;
+  flex: 1;
+  height: 80px;
+  min-width: 0;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+}
+
+.car-mover {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  width: 100px;
+  height: 60px;
+  transform: translateX(0px);
+  will-change: transform;
+}
+
+.car-finish-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 4px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffffff 0,
+    #ffffff 8px,
+    #000000 8px,
+    #000000 16px
+  );
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
