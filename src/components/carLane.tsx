@@ -5,7 +5,6 @@ import CarControls from "./carControls.tsx";
 import CarSvg from "./car.tsx";
 import { useRaceStore } from "../store/useRaceStore";
 import { useCarAnimation } from "../hooks/useCarAnimation";
-import Text from "antd/es/typography/Text";
 
 export default function CarLane({ car }: { car: Car }) {
   const status = useRaceStore((s) => s.cars[car.id]?.status ?? "idle");
@@ -21,11 +20,11 @@ export default function CarLane({ car }: { car: Car }) {
     <Flex align="center" gap="small" className="car-lane">
       <CarControls id={car.id} />
       <div className="car-track" ref={trackRef}>
+        <span className="car-name">{car.name}</span>
         <div className="car-mover" ref={moverRef}>
           <CarSvg color={car.color} />
         </div>
         <div className="car-finish-line" />
-        <Text>{car.name}</Text>
       </div>
     </Flex>
   );

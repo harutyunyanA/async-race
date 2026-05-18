@@ -139,6 +139,20 @@
   will-change: transform;
 }
 
+.car-name {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
 .car-finish-line {
   position: absolute;
   top: 0;
