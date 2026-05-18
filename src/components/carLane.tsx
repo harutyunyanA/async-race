@@ -5,15 +5,17 @@ import CarControls from "./carControls.tsx";
 import CarSvg from "./car.tsx";
 import { useRaceStore } from "../store/useRaceStore";
 import { useCarAnimation } from "../hooks/useCarAnimation";
+import Text from "antd/es/typography/Text";
 
 export default function CarLane({ car }: { car: Car }) {
-  const status = useRaceStore((s) => s.cars[car.id]?.status ?? "idle");
-  const duration = useRaceStore((s) => s.cars[car.id]?.specs?.duration ?? 0);
+  const status = useRaceStore((s) => s.cars[car.id].status ?? "idle");
+  const duration = useRaceStore((s) => s.cars[car.id].specs?.duration ?? 0);
+  const brokenAtFraction = useRaceStore((s) => s.cars[car.id].brokenAtFraction ?? null);
 
   const trackRef = useRef<HTMLDivElement>(null);
   const moverRef = useRef<HTMLDivElement>(null);
 
-  useCarAnimation({ status, duration, trackRef, moverRef });
+  useCarAnimation({ status, duration, brokenAtFraction, trackRef, moverRef });
 
   return (
     <Flex align="center" gap="small" className="car-lane">
@@ -23,6 +25,7 @@ export default function CarLane({ car }: { car: Car }) {
           <CarSvg color={car.color} />
         </div>
         <div className="car-finish-line" />
+        <Text>{car.name}</Text>
       </div>
     </Flex>
   );

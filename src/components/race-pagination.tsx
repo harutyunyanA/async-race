@@ -7,7 +7,6 @@ import { PAGE_SIZE } from "../lib/constants";
 export default function RacePagination() {
   const { cars, setPage, page } = useGarageStore();
   const isRacing = useRaceStore((s) => s.isRacing);
-
   return (
     <Flex justify="start" align="center" gap="large">
       <Pagination

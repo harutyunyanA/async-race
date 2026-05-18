@@ -11,6 +11,7 @@ export interface EngineSpecs {
 export interface CarRaceState {
   status: CarStatus;
   specs: EngineSpecs | null;
+  brokenAtFraction: number | null;
 }
 
 export interface WinnerInfo {
