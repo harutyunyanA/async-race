@@ -43,10 +43,3 @@ export const getCarsApi = async (): Promise<Car[]> => {
 
   return res.json() as Promise<Car[]>;
 };
-
-export const deleteCarApi = async (id: number): Promise<void> => {
-  const res = await fetch(`${BASE_URL}/garage/${id}`, { method: "DELETE" });
-
-  if (res.status === 404) throw new Error("Car not found");
-  if (res.status !== 200) throw new Error("Unable to delete car");
-};

@@ -29,5 +29,4 @@ export interface WinnersState {
   createWinner: (winner: Winner) => Promise<Winner>;
   getWinners: () => Promise<void>;
   deleteWinner: (id: number) => Promise<void>;
-  saveRaceWinner: (id: number, time: number) => Promise<void>;
 }

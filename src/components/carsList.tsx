@@ -1,38 +1,26 @@
 import { Flex } from "antd";
 import { useEffect } from "react";
-import Title from "antd/es/typography/Title";
 import { useGarageStore } from "../store/useGarageStore";
-import RacePagination from "./race-pagination.tsx";
-import CarLane from "./carLane.tsx";
-import WinnerBanner from "./WinnerBanner.tsx";
-import { PAGE_SIZE } from "../lib/constants";
+import { getCarsApi } from "../api/garage";
 
 export default function RaceContent() {
-  const { cars, getCars, page } = useGarageStore();
+  const { addCars } = useGarageStore();
 
   useEffect(() => {
-    getCars();
-  }, [page, getCars]);
+    (async () => {
+      try {
+        const data = await getCarsApi();
+        addCars(data);
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  }, [addCars]);
 
-  const carsToShow = cars.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
   return (
-    <>
-      <Flex vertical style={{ width: "100%" }} justify="space-between" className="race-content">
-        <Flex vertical gap="large" className="race-lines">
-          {carsToShow.length > 0 ? (
-            carsToShow.map((car) => <CarLane car={car} key={car.id} />)
-          ) : (
-            <Title
-              className="neon-title empty-garage"
-              style={{ "--neon-color": "#00ffff" } as React.CSSProperties}
-            >
-              No cars in garage. Create new car or use `GENERATE CARS` button
-            </Title>
-          )}
-        </Flex>
-        <RacePagination />
-      </Flex>
-      <WinnerBanner />
-    </>
+    <Flex style={{ width: "100%" }}>
+      <Flex vertical style={{ width: "100%" }} gap="small" />
+      <Flex />
+    </Flex>
   );
 }
