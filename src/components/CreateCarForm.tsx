@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ColorPicker, Flex, Input, message } from "antd";
+import { Button, ColorPicker, Input, message } from "antd";
 import { useGarageStore } from "../store/useGarageStore";
 import { useRaceStore } from "../store/useRaceStore";
 
@@ -18,11 +18,15 @@ export default function CreateCarForm() {
     }
   };
   return (
-    <Flex gap="small" id="create-car">
+    <div
+      id="create-car"
+      className="flex flex-row max-sm:flex-wrap max-sm:w-full gap-2 max-sm:gap-y-2 items-center"
+    >
       {contextHolder}
       <Input
         placeholder="Car name"
         size="large"
+        className="max-sm:basis-full! max-sm:grow! max-xl:flex-1"
         value={newCar.name}
         disabled={isRacing}
         onChange={(e) => setNewCar({ name: e.target.value })}
@@ -35,13 +39,13 @@ export default function CreateCarForm() {
       />
       <Button
         size="large"
-        className="neon-btn"
+        className="neon-btn max-sm:flex-1"
         style={{ "--neon-color": "#ff00ff" } as React.CSSProperties}
         onClick={handleCreate}
         disabled={isRacing || newCar.name.trim() === ""}
       >
         CREATE
       </Button>
-    </Flex>
+    </div>
   );
 }

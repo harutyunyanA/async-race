@@ -74,7 +74,7 @@ export const useRaceStore = create<RaceStore>((set, get) => {
       if (get().isRacing || cars.length === 0) return;
       set({ isRacing: true, winner: null });
 
-      const runs = cars.map((car) =>
+      const runs = cars.map(async (car) =>
         runCar(car.id).then((result) => ({ ...result, name: car.name })),
       );
 
@@ -93,7 +93,7 @@ export const useRaceStore = create<RaceStore>((set, get) => {
 
     resetRace: async (ids) => {
       set({ winner: null });
-      await Promise.all(ids.map((id) => stopCar(id)));
+      await Promise.all(ids.map(async (id) => stopCar(id)));
     },
 
     clearWinner: () => set({ winner: null }),

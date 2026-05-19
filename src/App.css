@@ -1,24 +1,9 @@
 .main-layout {
-  min-height: 100vh;
   background-image: url("/back.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-
-.main-header {
-  height: 15vh;
-  display: flex;
-  align-items: center;
-  background: transparent !important;
-  line-height: normal !important;
-}
-
-.main-content {
-  padding: 40px;
-  color: #fff;
-  min-height: 85vh;
 }
 
 .neon-btn {
@@ -47,13 +32,6 @@
   letter-spacing: 2px;
 }
 
-.empty-garage {
-  text-align: center;
-  padding: 80px 24px !important;
-  font-size: 1.5rem !important;
-  opacity: 0.85;
-}
-
 .transparent-table .ant-table,
 .transparent-table .ant-table-container,
 .transparent-table .ant-table-content,
@@ -72,6 +50,17 @@
 
 .transparent-table .ant-table-placeholder .ant-empty-description {
   color: rgba(255, 255, 255, 0.5) !important;
+}
+
+@media (max-width: 640px) {
+  .transparent-table .ant-table-thead > tr > th,
+  .transparent-table .ant-table-tbody > tr > td {
+    padding: 8px 4px !important;
+    font-size: 0.75rem !important;
+  }
+  .transparent-table .ant-table-thead > tr > th {
+    white-space: normal !important;
+  }
 }
 
 .neon-pagination.ant-pagination-simple .ant-pagination-simple-pager {
@@ -100,10 +89,6 @@
   color: rgba(255, 255, 255, 0.3) !important;
 }
 
-.race-content {
-  min-height: 40%;
-}
-
 .winner-modal .ant-modal-body {
   display: flex;
   align-items: center;
@@ -116,49 +101,7 @@
   color: #fff;
 }
 
-.car-lane {
-  width: 100%;
-}
-
-.car-track {
-  position: relative;
-  flex: 1;
-  height: 80px;
-  min-width: 0;
-  border-bottom: 2px dashed rgba(255, 255, 255, 0.25);
-  overflow: hidden;
-}
-
-.car-mover {
-  position: absolute;
-  left: 0;
-  bottom: 8px;
-  width: 100px;
-  height: 60px;
-  transform: translateX(0px);
-  will-change: transform;
-}
-
-.car-name {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
 .car-finish-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 4px;
   background: repeating-linear-gradient(
     to bottom,
     #ffffff 0,

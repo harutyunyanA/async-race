@@ -1,4 +1,4 @@
-import { Button, Flex, Input, ColorPicker, message } from "antd";
+import { Button, Input, ColorPicker, message } from "antd";
 import React from "react";
 import { useGarageStore } from "../store/useGarageStore";
 import { useRaceStore } from "../store/useRaceStore";
@@ -18,11 +18,15 @@ export default function UpdateCarForm() {
   };
 
   return (
-    <Flex gap="small" id="update-car">
+    <div
+      id="update-car"
+      className="flex flex-row max-sm:flex-wrap max-sm:w-full gap-2 max-sm:gap-y-2 items-center"
+    >
       {contextHolder}
       <Input
         placeholder="Car name"
         size="large"
+        className="max-sm:basis-full! max-sm:grow! max-xl:flex-1"
         value={updateCar.name}
         disabled={isRacing}
         onChange={(e) => setUpdateCar({ name: e.target.value })}
@@ -35,13 +39,13 @@ export default function UpdateCarForm() {
       />
       <Button
         size="large"
-        className="neon-btn"
+        className="neon-btn max-sm:flex-1"
         style={{ "--neon-color": "#ff00ff" } as React.CSSProperties}
         onClick={handleUpdate}
         disabled={isRacing || updateCar.id === -1 || updateCar.name.trim() === ""}
       >
         UPDATE
       </Button>
-    </Flex>
+    </div>
   );
 }
