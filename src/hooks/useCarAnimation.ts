@@ -22,7 +22,8 @@ export function useCarAnimation({
     const track = trackRef.current;
     if (!mover || !track) return;
 
-    const finishPx = Math.max(0, track.clientWidth - CAR_WIDTH_PX);
+    const carWidth = mover.offsetWidth || CAR_WIDTH_PX;
+    const finishPx = Math.max(0, track.clientWidth - carWidth);
 
     switch (status) {
       case "driving": {
@@ -46,6 +47,8 @@ export function useCarAnimation({
         mover.style.transform = "translateX(0px)";
         break;
       }
+      default:
+        break;
     }
   }, [status, duration, brokenAtFraction, trackRef, moverRef]);
 }

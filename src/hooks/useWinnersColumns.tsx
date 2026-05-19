@@ -24,7 +24,11 @@ export const getWinnersColumns = (
     title: "CAR",
     dataIndex: "color",
     key: "car",
-    render: (color: string) => <Car color={color} />,
+    render: (color: string) => (
+      <div className="w-20 h-12 max-sm:w-10 max-sm:h-6">
+        <Car color={color} />
+      </div>
+    ),
     width: "10%",
   },
   {

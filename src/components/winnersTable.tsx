@@ -3,7 +3,7 @@ import React, { useEffect, useMemo } from "react";
 import { useWinnerStore } from "../store/useWinnersStore";
 import { useGarageStore } from "../store/useGarageStore";
 import { useWinnersPagination } from "../hooks/useWinnersPagination";
-import { getWinnersColumns } from "../lib/winnersColumns.tsx";
+import { getWinnersColumns } from "../hooks/useWinnersColumns.tsx";
 
 export default function WinnersTable() {
   const { winners, totalCount, getWinners } = useWinnerStore();
@@ -31,7 +31,6 @@ export default function WinnersTable() {
     <Table
       rootClassName="transparent-table"
       style={{ "--neon-color": "#ff00ff" } as React.CSSProperties}
-      rowClassName={() => "winner-row"}
       columns={getWinnersColumns(sortBy, order)}
       dataSource={winnersData}
       onChange={handleTableChange}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Flex } from "antd";
+import { Button } from "antd";
 import { Play, RotateCcw } from "lucide-react";
 import { useGarageStore } from "../store/useGarageStore";
 import { useRaceStore } from "../store/useRaceStore";
@@ -16,10 +16,10 @@ export default function RaceControls() {
   );
 
   return (
-    <Flex gap="small" id="race-controls">
+    <div id="race-controls" className="flex flex-row gap-2 max-sm:w-full">
       <Button
         size="large"
-        className="neon-btn"
+        className="neon-btn max-xl:flex-1"
         style={{ "--neon-color": "#00ff00" } as React.CSSProperties}
         disabled={isRacing || carsOnPage.length === 0 || !allIdle}
         onClick={async () => startRace(carsOnPage)}
@@ -29,7 +29,7 @@ export default function RaceControls() {
       </Button>
       <Button
         size="large"
-        className="neon-btn"
+        className="neon-btn max-xl:flex-1"
         style={{ "--neon-color": "#ff00ff" } as React.CSSProperties}
         disabled={isRacing || allIdle || isDriving}
         onClick={async () => resetRace(carsOnPage.map((c) => c.id))}
@@ -37,6 +37,6 @@ export default function RaceControls() {
         RESET
         <RotateCcw size={18} />
       </Button>
-    </Flex>
+    </div>
   );
 }

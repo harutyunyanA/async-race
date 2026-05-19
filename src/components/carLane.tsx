@@ -1,4 +1,3 @@
-import { Flex } from "antd";
 import { useRef } from "react";
 import type { Car } from "../types/car";
 import CarControls from "./carControls.tsx";
@@ -17,15 +16,23 @@ export default function CarLane({ car }: { car: Car }) {
   useCarAnimation({ status, duration, brokenAtFraction, trackRef, moverRef });
 
   return (
-    <Flex align="center" gap="small" className="car-lane">
+    <div className="flex flex-row items-center gap-2 max-sm:gap-1.5 w-full">
       <CarControls id={car.id} />
-      <div className="car-track" ref={trackRef}>
-        <span className="car-name">{car.name}</span>
-        <div className="car-mover" ref={moverRef}>
+      <div
+        ref={trackRef}
+        className="relative flex-1 min-w-0 h-20 max-sm:h-14 overflow-hidden border-b-2 border-white/25"
+      >
+        <span className="absolute inset-0 flex items-center justify-center max-sm:justify-end max-sm:pr-3 text-3xl max-xl:text-lg max-sm:text-sm font-bold uppercase tracking-widest max-sm:tracking-normal text-white/30 select-none">
+          {car.name}
+        </span>
+        <div
+          ref={moverRef}
+          className="absolute left-0 bottom-2 max-sm:bottom-1 w-25 h-15 max-sm:w-15 max-sm:h-9 will-change-transform"
+        >
           <CarSvg color={car.color} />
         </div>
-        <div className="car-finish-line" />
+        <div className="car-finish-line absolute top-0 bottom-0 right-0 w-1 max-sm:w-0.5" />
       </div>
-    </Flex>
+    </div>
   );
 }

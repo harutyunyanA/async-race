@@ -19,7 +19,7 @@ export default function GenerateCars() {
     <Flex gap="small" id="generate-cars">
       <Button
         size="large"
-        className="neon-btn"
+        className="neon-btn max-xl:flex-1"
         style={{ "--neon-color": "#00ff00" } as React.CSSProperties}
         onClick={handleGenerate}
         disabled={isRacing}
