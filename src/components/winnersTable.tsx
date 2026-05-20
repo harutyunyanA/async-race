@@ -1,12 +1,12 @@
 import { Table } from "antd";
 import React, { useEffect, useMemo } from "react";
-import { useWinnerStore } from "../store/useWinnersStore";
+import { useWinnersStore } from "../store/useWinnersStore";
 import { useGarageStore } from "../store/useGarageStore";
 import { useWinnersPagination } from "../hooks/useWinnersPagination";
 import { getWinnersColumns } from "../hooks/useWinnersColumns.tsx";
 
 export default function WinnersTable() {
-  const { winners, totalCount, getWinners } = useWinnerStore();
+  const { winners, totalCount, getWinners } = useWinnersStore();
   const { cars, getCars } = useGarageStore();
   const { handleTableChange, page, sortBy, order } = useWinnersPagination();
 

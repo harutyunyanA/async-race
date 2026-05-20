@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import Title from "antd/es/typography/Title";
 import { useGarageStore } from "../store/useGarageStore";
-import RacePagination from "./race-pagination.tsx";
+import RacePagination from "./racePagination.tsx";
 import CarLane from "./carLane.tsx";
-import WinnerBanner from "./WinnerBanner.tsx";
+import WinnerBanner from "./winnerBanner.tsx";
 import { PAGE_SIZE } from "../lib/constants";
 
-export default function RaceContent() {
+export default function CarsList() {
   const { cars, getCars, page } = useGarageStore();
 
   useEffect(() => {

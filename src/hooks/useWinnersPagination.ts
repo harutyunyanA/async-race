@@ -1,9 +1,9 @@
 import type { TableProps } from "antd";
-import { useWinnerStore } from "../store/useWinnersStore";
+import { useWinnersStore } from "../store/useWinnersStore";
 import type { WinnerTableData, SortBy, Order } from "../types/winners";
 
 export const useWinnersPagination = () => {
-  const { page, sortBy, order, setPage, setSorting } = useWinnerStore();
+  const { page, sortBy, order, setPage, setSorting } = useWinnersStore();
 
   const handleTableChange: TableProps<WinnerTableData>["onChange"] = (
     pagination,
