@@ -1,8 +1,8 @@
-import RaceContent from "../components/carsList.tsx";
-import RaceControls from "../components/RaceControls.tsx";
-import CreateCarForm from "../components/CreateCarForm.tsx";
-import UpdateCarForm from "../components/UpdateCarForm.tsx";
-import GenerateCars from "../components/GenerateCars.tsx";
+import CarsList from "../components/carsList.tsx";
+import RaceControls from "../components/raceControls.tsx";
+import CreateCarForm from "../components/createCarForm.tsx";
+import UpdateCarForm from "../components/updateCarForm.tsx";
+import GenerateCars from "../components/generateCars.tsx";
 
 export default function Garage() {
   return (
@@ -16,7 +16,7 @@ export default function Garage() {
         <UpdateCarForm />
         <GenerateCars />
       </div>
-      <RaceContent />
+      <CarsList />
     </div>
   );
 }

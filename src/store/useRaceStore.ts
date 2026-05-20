@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { CarRaceState, RaceStore } from "../types/race";
 import { driveApi, EngineBrokenError, startEngineApi, stopEngineApi } from "../api/engine";
-import { useWinnerStore } from "./useWinnersStore";
+import { useWinnersStore } from "./useWinnersStore";
 
 const IDLE_STATE: CarRaceState = { status: "idle", specs: null, brokenAtFraction: null };
 
@@ -82,7 +82,7 @@ export const useRaceStore = create<RaceStore>((set, get) => {
         const winner = await Promise.any(runs);
         const time = Number((winner.durationMs / 1000).toFixed(2));
         set({ winner: { id: winner.id, name: winner.name, time } });
-        await useWinnerStore.getState().saveRaceWinner(winner.id, time);
+        await useWinnersStore.getState().saveRaceWinner(winner.id, time);
       } catch {
         // every car broke down — no winner
       }
