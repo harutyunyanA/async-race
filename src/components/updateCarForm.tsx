@@ -26,6 +26,7 @@ export default function UpdateCarForm() {
       <Input
         placeholder="Car name"
         size="large"
+        maxLength={30}
         className="max-sm:basis-full! max-sm:grow! max-xl:flex-1"
         value={updateCar.name}
         disabled={isRacing}
