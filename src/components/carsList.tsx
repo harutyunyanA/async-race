@@ -14,10 +14,12 @@ export default function RaceContent() {
   }, [page, getCars]);
 
   const carsToShow = cars.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const linesBg =
+    "bg-[url(/start.png),url(/finish.png)] bg-no-repeat bg-position-[left_250px_center,right_5%_center] max-sm:bg-position-[left_150px_center,right_8%_center] bg-size-[50px_100%,50px_100%] max-sm:bg-size-[24px_100%,24px_100%] max-xl:bg-size-[32px_100%,32px_100%]";
   return (
     <>
-      <div className="flex flex-col justify-between w-full min-h-[40%]">
-        <div className="flex flex-col gap-6 max-sm:gap-3">
+      <div className="flex flex-col justify-between w-full min-h-[40%] ">
+        <div className={`flex flex-col gap-6 max-sm:gap-3 ${carsToShow.length > 0 ? linesBg : ""}`}>
           {carsToShow.length > 0 ? (
             carsToShow.map((car) => <CarLane car={car} key={car.id} />)
           ) : (

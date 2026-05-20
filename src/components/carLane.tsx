@@ -22,7 +22,7 @@ export default function CarLane({ car }: { car: Car }) {
         ref={trackRef}
         className="relative flex-1 min-w-0 h-20 max-sm:h-14 overflow-hidden border-b-2 border-white/25"
       >
-        <span className="absolute inset-0 flex items-center justify-center max-sm:justify-end max-sm:pr-3 text-3xl max-xl:text-lg max-sm:text-sm font-bold uppercase tracking-widest max-sm:tracking-normal text-white/30 select-none">
+        <span className="absolute inset-0 flex items-center justify-center max-sm:justify-center max-sm:pr-3 text-2xl max-xl:text-sm font-bold uppercase tracking-widest max-sm:tracking-normal text-white/30 select-none">
           {car.name}
         </span>
         <div
@@ -31,7 +31,7 @@ export default function CarLane({ car }: { car: Car }) {
         >
           <CarSvg color={car.color} />
         </div>
-        <div className="car-finish-line absolute top-0 bottom-0 right-0 w-1 max-sm:w-0.5" />
+        {/* <div className="absolute top-0 bottom-0 right-0 w-1 max-sm:w-0.5" /> */}
       </div>
     </div>
   );
