@@ -1,10 +1,9 @@
 import { create } from "zustand";
 import type { CarRaceState, RaceStore } from "../types/race";
 import { driveApi, EngineBrokenError, startEngineApi, stopEngineApi } from "../api/engine";
-import { useWinnerStore } from "./useWinnersStore";
-import { MS_IN_SECOND, TIME_FRACTION_DIGITS } from "../lib/constants";
+import { useWinnersStore } from "./useWinnersStore";
 
-const IDLE_STATE: CarRaceState = { status: "idle", specs: null };
+const IDLE_STATE: CarRaceState = { status: "idle", specs: null, brokenAtFraction: null };
 
 export const useRaceStore = create<RaceStore>((set, get) => {
   const patchCar = (id: number, patch: Partial<CarRaceState>): void => {
@@ -17,10 +16,11 @@ export const useRaceStore = create<RaceStore>((set, get) => {
   };
 
   const runCar = async (id: number): Promise<{ id: number; durationMs: number }> => {
-    patchCar(id, { status: "starting", specs: null });
+    patchCar(id, { status: "starting", specs: null, brokenAtFraction: null });
 
     const { velocity, distance } = await startEngineApi(id);
     const duration = distance / velocity;
+    const drivingStartedAt = Date.now();
     patchCar(id, { status: "driving", specs: { velocity, distance, duration } });
 
     try {
@@ -28,7 +28,10 @@ export const useRaceStore = create<RaceStore>((set, get) => {
       patchCar(id, { status: "finished" });
       return { id, durationMs: duration };
     } catch (err) {
-      if (err instanceof EngineBrokenError) patchCar(id, { status: "broken" });
+      if (err instanceof EngineBrokenError) {
+        const fraction = duration > 0 ? Math.min(1, (Date.now() - drivingStartedAt) / duration) : 0;
+        patchCar(id, { status: "broken", brokenAtFraction: fraction });
+      }
       throw err;
     }
   };
@@ -41,7 +44,9 @@ export const useRaceStore = create<RaceStore>((set, get) => {
       await runCar(id);
     } catch {
       const after = get().cars[id];
-      if (after?.status !== "broken") patchCar(id, { status: "idle", specs: null });
+      if (after?.status !== "broken") {
+        patchCar(id, { status: "idle", specs: null, brokenAtFraction: null });
+      }
     }
   };
 
@@ -54,7 +59,7 @@ export const useRaceStore = create<RaceStore>((set, get) => {
     try {
       await stopEngineApi(id);
     } finally {
-      patchCar(id, { status: "idle", specs: null });
+      patchCar(id, { status: "idle", specs: null, brokenAtFraction: null });
     }
   };
 
@@ -69,7 +74,7 @@ export const useRaceStore = create<RaceStore>((set, get) => {
       if (get().isRacing || cars.length === 0) return;
       set({ isRacing: true, winner: null });
 
-      const runs = cars.map((car) =>
+      const runs = cars.map(async (car) =>
         runCar(car.id).then((result) => ({ ...result, name: car.name })),
       );
 
@@ -77,7 +82,7 @@ export const useRaceStore = create<RaceStore>((set, get) => {
         const winner = await Promise.any(runs);
         const time = Number((winner.durationMs / 1000).toFixed(2));
         set({ winner: { id: winner.id, name: winner.name, time } });
-        await useWinnerStore.getState().saveRaceWinner(winner.id, time);
+        await useWinnersStore.getState().saveRaceWinner(winner.id, time);
       } catch {
         // every car broke down — no winner
       }
@@ -88,7 +93,7 @@ export const useRaceStore = create<RaceStore>((set, get) => {
 
     resetRace: async (ids) => {
       set({ winner: null });
-      await Promise.all(ids.map((id) => stopCar(id)));
+      await Promise.all(ids.map(async (id) => stopCar(id)));
     },
 
     clearWinner: () => set({ winner: null }),

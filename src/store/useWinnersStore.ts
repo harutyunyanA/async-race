@@ -8,7 +8,7 @@ import {
   updateWinnerApi,
 } from "../api/winners";
 
-export const useWinnerStore = create<WinnersState>((set, get) => ({
+export const useWinnersStore = create<WinnersState>((set, get) => ({
   winners: [],
   totalCount: 0,
   page: 1,

@@ -5,9 +5,7 @@ export default function Car({ color }: { color: string }) {
       id="svg3007"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      width="100"
-      height="60"
-      style={{ transform: "scaleX(-1)" }}
+      style={{ transform: "scaleX(-1)", width: "100%", height: "100%" }}
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0" />
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
