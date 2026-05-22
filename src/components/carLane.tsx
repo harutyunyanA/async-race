@@ -31,7 +31,6 @@ export default function CarLane({ car }: { car: Car }) {
         >
           <CarSvg color={car.color} />
         </div>
-        {/* <div className="absolute top-0 bottom-0 right-0 w-1 max-sm:w-0.5" /> */}
       </div>
     </div>
   );

@@ -100,14 +100,3 @@
 .winner-modal .ant-modal-close {
   color: #fff;
 }
-
-.car-finish-line {
-  background: repeating-linear-gradient(
-    to bottom,
-    #ffffff 0,
-    #ffffff 8px,
-    #000000 8px,
-    #000000 16px
-  );
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-}

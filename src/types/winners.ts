@@ -19,14 +19,9 @@ export interface WinnersState {
   sortBy: SortBy;
   order: Order;
 
-  setWinners: (winners: Winner[]) => void;
-  setTotalCount: (count: number) => void;
   setPage: (page: number) => void;
-  setSortBy: (sortBy: SortBy) => void;
-  setOrder: (order: Order) => void;
   setSorting: (sortBy: SortBy, order: Order) => void;
 
-  createWinner: (winner: Winner) => Promise<Winner>;
   getWinners: () => Promise<void>;
   deleteWinner: (id: number) => Promise<void>;
   saveRaceWinner: (id: number, time: number) => Promise<void>;

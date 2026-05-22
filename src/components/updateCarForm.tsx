@@ -20,14 +20,14 @@ export default function UpdateCarForm() {
   return (
     <div
       id="update-car"
-      className="flex flex-row max-sm:flex-wrap max-sm:w-full gap-2 max-sm:gap-y-2 items-center"
+      className="flex flex-row gap-2 items-center max-sm:grid max-sm:grid-cols-[1fr_auto] max-sm:gap-y-2 max-sm:w-full"
     >
       {contextHolder}
       <Input
         placeholder="Car name"
         size="large"
         maxLength={30}
-        className="max-sm:basis-full! max-sm:grow! max-xl:flex-1"
+        className="max-xl:flex-1"
         value={updateCar.name}
         disabled={isRacing}
         onChange={(e) => setUpdateCar({ name: e.target.value })}
@@ -40,7 +40,7 @@ export default function UpdateCarForm() {
       />
       <Button
         size="large"
-        className="neon-btn max-sm:flex-1"
+        className="neon-btn max-sm:col-span-2 max-sm:justify-self-end"
         style={{ "--neon-color": "#ff00ff" } as React.CSSProperties}
         onClick={handleUpdate}
         disabled={isRacing || updateCar.id === -1 || updateCar.name.trim() === ""}

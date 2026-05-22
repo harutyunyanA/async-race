@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Winner, WinnersState } from "../types/winners";
+import type { WinnersState } from "../types/winners";
 import {
   createWinnerApi,
   deleteWinnerApi,
@@ -15,29 +15,13 @@ export const useWinnersStore = create<WinnersState>((set, get) => ({
   sortBy: "time",
   order: "DESC",
 
-  setWinners: (winners) => set({ winners }),
-  setTotalCount: (count) => set({ totalCount: count }),
   setPage: (page) => {
     set({ page });
-    get().getWinners();
-  },
-  setSortBy: (sortBy) => {
-    set({ sortBy });
-    get().getWinners();
-  },
-  setOrder: (order) => {
-    set({ order });
     get().getWinners();
   },
   setSorting: (sortBy, order) => {
     set({ sortBy, order });
     get().getWinners();
-  },
-
-  createWinner: async (winner: Winner) => {
-    const data = await createWinnerApi(winner);
-    set((s) => ({ winners: [...s.winners, data] }));
-    return data;
   },
 
   getWinners: async () => {
